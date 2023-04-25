@@ -34,7 +34,6 @@ function onImageClick(eve) {
   if (clickElem.nodeName !== "IMG") {
     return;
   }
-
   const originImage = clickElem.dataset.source;
 }
 

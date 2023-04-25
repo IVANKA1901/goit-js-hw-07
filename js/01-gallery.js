@@ -41,10 +41,24 @@ function onImageClick(eve) {
 
   const originImage = clickElem.dataset.source;
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${originImage}" width="800" height=600">
-`);
-
+`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", onEscButton);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", onEscButton);
+      },
+    }
+  );
   instance.show();
-  console.log(originImage);
+  // console.log(originImage);
+  function onEscButton(evt) {
+    if (evt.key === "Escape") {
+      instance.close();
+    }
+  }
 }
